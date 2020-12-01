@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     
     lazy var classificationRequest: VNCoreMLRequest = {
         do{
-            let classifier = try snack(configuration: MLModelConfiguration())
+            let classifier = try Snacks(configuration: MLModelConfiguration())
             
             let model = try VNCoreMLModel(for: classifier.model)
             let request = VNCoreMLRequest(model: model, completionHandler: {
@@ -101,7 +101,7 @@ extension ViewController {
 
 extension ViewController {
     func processObservations(for request: VNRequest, error: Error?) {
-        if let results = request.results as? [VNClassificationObservation] {
+        if let results = request.results as? [VNClassificationObservation] {   //as?---向下转型(Downcasting),转换不成功时返回一个nil对象
             if results.isEmpty {
                 self.resultLabel.text = "Nothing found"
             } else {

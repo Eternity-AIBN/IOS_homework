@@ -13,8 +13,8 @@
 		835CDF6325749B9200922536 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 835CDF6125749B9200922536 /* Main.storyboard */; };
 		835CDF6525749B9400922536 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 835CDF6425749B9400922536 /* Assets.xcassets */; };
 		835CDF6825749B9400922536 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 835CDF6625749B9400922536 /* LaunchScreen.storyboard */; };
-		835CDF7725749F8200922536 /* snack.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 835CDF7625749F8200922536 /* snack.mlmodel */; };
 		83F9D21125762528008AB583 /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D21025762528008AB583 /* VideoCapture.swift */; };
+		83F9D21D25766B58008AB583 /* Snacks.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D21C25766B58008AB583 /* Snacks.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,8 +26,8 @@
 		835CDF6425749B9400922536 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		835CDF6725749B9400922536 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		835CDF6925749B9400922536 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		835CDF7625749F8200922536 /* snack.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = snack.mlmodel; sourceTree = "<group>"; };
 		83F9D21025762528008AB583 /* VideoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
+		83F9D21C25766B58008AB583 /* Snacks.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Snacks.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,8 +64,8 @@
 				835CDF5D25749B9100922536 /* SceneDelegate.swift */,
 				835CDF5F25749B9100922536 /* ViewController.swift */,
 				835CDF6125749B9200922536 /* Main.storyboard */,
+				83F9D21C25766B58008AB583 /* Snacks.mlmodel */,
 				83F9D21025762528008AB583 /* VideoCapture.swift */,
-				835CDF7625749F8200922536 /* snack.mlmodel */,
 				835CDF6425749B9400922536 /* Assets.xcassets */,
 				835CDF6625749B9400922536 /* LaunchScreen.storyboard */,
 				835CDF6925749B9400922536 /* Info.plist */,
@@ -145,7 +145,7 @@
 			files = (
 				835CDF6025749B9100922536 /* ViewController.swift in Sources */,
 				83F9D21125762528008AB583 /* VideoCapture.swift in Sources */,
-				835CDF7725749F8200922536 /* snack.mlmodel in Sources */,
+				83F9D21D25766B58008AB583 /* Snacks.mlmodel in Sources */,
 				835CDF5C25749B9100922536 /* AppDelegate.swift in Sources */,
 				835CDF5E25749B9100922536 /* SceneDelegate.swift in Sources */,
 			);
