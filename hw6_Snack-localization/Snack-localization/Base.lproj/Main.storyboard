@@ -21,8 +21,8 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ResultLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y3d-qq-eb0">
-                                <rect key="frame" x="131" y="813" width="152" height="36"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <rect key="frame" x="160" y="813" width="94" height="21.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -39,8 +39,8 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="resultLabel" destination="Y3d-qq-eb0" id="fpp-Tg-1bW"/>
-                        <outlet property="videoView" destination="vXF-DH-qns" id="QmG-1d-4yc"/>
+                        <outlet property="resultLabel" destination="Y3d-qq-eb0" id="jzj-jH-fLc"/>
+                        <outlet property="videoView" destination="vXF-DH-qns" id="YCs-EU-K77"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

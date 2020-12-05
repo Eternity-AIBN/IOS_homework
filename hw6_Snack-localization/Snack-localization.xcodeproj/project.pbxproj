@@ -7,17 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		835062A5257B339000533551 /* BoundingBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835062A4257B339000533551 /* BoundingBox.swift */; };
+		835062A8257B33F600533551 /* CVPixelBuffer+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835062A7257B33F600533551 /* CVPixelBuffer+Helpers.swift */; };
+		835062AB257B342900533551 /* UIImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835062AA257B342900533551 /* UIImage+CVPixelBuffer.swift */; };
+		83541FC4257B6C110059E3F9 /* Snacks.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 83541FC3257B6C110059E3F9 /* Snacks.mlmodel */; };
 		835CDF5C25749B9100922536 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835CDF5B25749B9100922536 /* AppDelegate.swift */; };
 		835CDF5E25749B9100922536 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835CDF5D25749B9100922536 /* SceneDelegate.swift */; };
 		835CDF6025749B9100922536 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835CDF5F25749B9100922536 /* ViewController.swift */; };
 		835CDF6325749B9200922536 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 835CDF6125749B9200922536 /* Main.storyboard */; };
 		835CDF6525749B9400922536 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 835CDF6425749B9400922536 /* Assets.xcassets */; };
 		835CDF6825749B9400922536 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 835CDF6625749B9400922536 /* LaunchScreen.storyboard */; };
+		83A1C875257B601300046100 /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1C874257B601300046100 /* Helper.swift */; };
+		83A1C879257B608A00046100 /* SNACKMDOEL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A1C878257B608A00046100 /* SNACKMDOEL.swift */; };
 		83F9D21125762528008AB583 /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D21025762528008AB583 /* VideoCapture.swift */; };
-		83F9D21D25766B58008AB583 /* Snacks.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 83F9D21C25766B58008AB583 /* Snacks.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		835062A4257B339000533551 /* BoundingBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundingBox.swift; sourceTree = "<group>"; };
+		835062A7257B33F600533551 /* CVPixelBuffer+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CVPixelBuffer+Helpers.swift"; sourceTree = "<group>"; };
+		835062AA257B342900533551 /* UIImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
+		83541FC3257B6C110059E3F9 /* Snacks.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Snacks.mlmodel; sourceTree = "<group>"; };
 		835CDF5825749B9100922536 /* Snack-localization.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Snack-localization.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		835CDF5B25749B9100922536 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		835CDF5D25749B9100922536 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,8 +35,9 @@
 		835CDF6425749B9400922536 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		835CDF6725749B9400922536 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		835CDF6925749B9400922536 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83A1C874257B601300046100 /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		83A1C878257B608A00046100 /* SNACKMDOEL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNACKMDOEL.swift; sourceTree = "<group>"; };
 		83F9D21025762528008AB583 /* VideoCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
-		83F9D21C25766B58008AB583 /* Snacks.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Snacks.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +54,7 @@
 		835CDF4F25749B9100922536 = {
 			isa = PBXGroup;
 			children = (
+				83A1C878257B608A00046100 /* SNACKMDOEL.swift */,
 				835CDF5A25749B9100922536 /* Snack-localization */,
 				835CDF5925749B9100922536 /* Products */,
 			);
@@ -63,9 +74,13 @@
 				835CDF5B25749B9100922536 /* AppDelegate.swift */,
 				835CDF5D25749B9100922536 /* SceneDelegate.swift */,
 				835CDF5F25749B9100922536 /* ViewController.swift */,
+				83A1C874257B601300046100 /* Helper.swift */,
+				83541FC3257B6C110059E3F9 /* Snacks.mlmodel */,
 				835CDF6125749B9200922536 /* Main.storyboard */,
-				83F9D21C25766B58008AB583 /* Snacks.mlmodel */,
 				83F9D21025762528008AB583 /* VideoCapture.swift */,
+				835062AA257B342900533551 /* UIImage+CVPixelBuffer.swift */,
+				835062A4257B339000533551 /* BoundingBox.swift */,
+				835062A7257B33F600533551 /* CVPixelBuffer+Helpers.swift */,
 				835CDF6425749B9400922536 /* Assets.xcassets */,
 				835CDF6625749B9400922536 /* LaunchScreen.storyboard */,
 				835CDF6925749B9400922536 /* Info.plist */,
@@ -144,10 +159,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				835CDF6025749B9100922536 /* ViewController.swift in Sources */,
+				835062A8257B33F600533551 /* CVPixelBuffer+Helpers.swift in Sources */,
 				83F9D21125762528008AB583 /* VideoCapture.swift in Sources */,
-				83F9D21D25766B58008AB583 /* Snacks.mlmodel in Sources */,
+				835062A5257B339000533551 /* BoundingBox.swift in Sources */,
 				835CDF5C25749B9100922536 /* AppDelegate.swift in Sources */,
+				83A1C879257B608A00046100 /* SNACKMDOEL.swift in Sources */,
+				83A1C875257B601300046100 /* Helper.swift in Sources */,
+				83541FC4257B6C110059E3F9 /* Snacks.mlmodel in Sources */,
 				835CDF5E25749B9100922536 /* SceneDelegate.swift in Sources */,
+				835062AB257B342900533551 /* UIImage+CVPixelBuffer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

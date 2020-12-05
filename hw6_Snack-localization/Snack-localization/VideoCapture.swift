@@ -5,101 +5,121 @@
 //  Created by AIBN on 2020/11/30.
 //
 
+import UIKit
 import AVFoundation
 import CoreVideo
-import UIKit
 
 public protocol VideoCaptureDelegate: class {
-    func videoCapture(capture: VideoCapture, didCaptureVideoFrame: CMSampleBuffer)
+  func videoCapture(_ capture: VideoCapture, didCaptureVideoFrame: CVPixelBuffer?, timestamp: CMTime)
 }
 
 public class VideoCapture: NSObject {
-    public var previewLayer: AVCaptureVideoPreviewLayer?
-    public weak var delegate: VideoCaptureDelegate?
-    public var frameInterval = 1
-    var seenFrames = 0
-    
-    let captrueSession = AVCaptureSession()
-    let videoOutput = AVCaptureVideoDataOutput()
-    let queue = DispatchQueue(label: "cn.edu.nju.czh.camera-queue")
-    var lastTime = CMTime()
-    
-    public func setUp(sessionPreset: AVCaptureSession.Preset = .medium, completion: @escaping (Bool)->Void) {
-        queue.async {
-            let success = self.setUpCamera(sessionPreset: sessionPreset)
-            DispatchQueue.main.async {
-                completion(success)
-            }
-        }
+  public var previewLayer: AVCaptureVideoPreviewLayer?
+  public weak var delegate: VideoCaptureDelegate?
+  public var desiredFrameRate = 30
+
+  let captureSession = AVCaptureSession()
+  let videoOutput = AVCaptureVideoDataOutput()
+  let queue = DispatchQueue(label: "net.machinethink.camera-queue")
+
+  public func setUp(sessionPreset: AVCaptureSession.Preset = .medium,
+                    completion: @escaping (Bool) -> Void) {
+    queue.async {
+      let success = self.setUpCamera(sessionPreset: sessionPreset)
+      DispatchQueue.main.async {
+        completion(success)
+      }
     }
-    
-    private func setUpCamera(sessionPreset: AVCaptureSession.Preset)->Bool {
-        self.captrueSession.beginConfiguration()
-        self.captrueSession.sessionPreset = sessionPreset
-        
-        guard let captureDevice = AVCaptureDevice.default(for: .video) else {
-            print("Error: Initialize Device failed")
-            return false
-        }
-        
-        guard let videoInput = try? AVCaptureDeviceInput(device: captureDevice) else {
-            print("Error: could not create video input ")
-            return false
-        }
-        
-        if captrueSession.canAddInput(videoInput) {
-            captrueSession.addInput(videoInput)
-        }
-        
-        let previewLayer = AVCaptureVideoPreviewLayer(session: captrueSession)
-        previewLayer.videoGravity = .resizeAspectFill
-        previewLayer.connection?.videoOrientation = .portrait
-        self.previewLayer = previewLayer
-        
-        let settings: [String: Any] = [
-            kCVPixelBufferPixelFormatTypeKey as String: NSNumber(value: kCVPixelFormatType_32BGRA)
-        ]
-        
-        self.videoOutput.videoSettings = settings
-        self.videoOutput.alwaysDiscardsLateVideoFrames = true
-        self.videoOutput.setSampleBufferDelegate(self, queue: queue)
-        if captrueSession.canAddOutput(self.videoOutput) {
-            captrueSession.addOutput(self.videoOutput)
-        }
-        
-        videoOutput.connection(with: .video)?.videoOrientation = .portrait
-        
-        captrueSession.commitConfiguration()
-        return true
+  }
+
+  func setUpCamera(sessionPreset: AVCaptureSession.Preset) -> Bool {
+    captureSession.beginConfiguration()
+    captureSession.sessionPreset = sessionPreset
+
+    guard let captureDevice = AVCaptureDevice.default(for: AVMediaType.video) else {
+      print("Error: no video devices available")
+      return false
     }
-    
-    public func start() {
-        if !captrueSession.isRunning {
-            seenFrames = 0
-            captrueSession.startRunning()
-        }
+
+    guard let videoInput = try? AVCaptureDeviceInput(device: captureDevice) else {
+      print("Error: could not create AVCaptureDeviceInput")
+      return false
     }
-    
-    public func stop() {
-        if captrueSession.isRunning {
-            captrueSession.stopRunning()
-        }
+
+    if captureSession.canAddInput(videoInput) {
+      captureSession.addInput(videoInput)
     }
+
+    let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+    previewLayer.videoGravity = AVLayerVideoGravity.resizeAspect
+    previewLayer.connection?.videoOrientation = .portrait
+    self.previewLayer = previewLayer
+
+    let settings: [String : Any] = [
+      kCVPixelBufferPixelFormatTypeKey as String: NSNumber(value: kCVPixelFormatType_32BGRA),
+    ]
+
+    videoOutput.videoSettings = settings
+    videoOutput.alwaysDiscardsLateVideoFrames = true
+    videoOutput.setSampleBufferDelegate(self, queue: queue)
+    if captureSession.canAddOutput(videoOutput) {
+      captureSession.addOutput(videoOutput)
+    }
+
+    // We want the buffers to be in portrait orientation otherwise they are
+    // rotated by 90 degrees. Need to set this _after_ addOutput()!
+    videoOutput.connection(with: AVMediaType.video)?.videoOrientation = .portrait
+
+    // Based on code from https://github.com/dokun1/Lumina/
+    let activeDimensions = CMVideoFormatDescriptionGetDimensions(captureDevice.activeFormat.formatDescription)
+    for vFormat in captureDevice.formats {
+      let dimensions = CMVideoFormatDescriptionGetDimensions(vFormat.formatDescription)
+      let ranges = vFormat.videoSupportedFrameRateRanges as [AVFrameRateRange]
+      if let frameRate = ranges.first,
+         frameRate.maxFrameRate >= Float64(desiredFrameRate) &&
+         frameRate.minFrameRate <= Float64(desiredFrameRate) &&
+         activeDimensions.width == dimensions.width &&
+         activeDimensions.height == dimensions.height &&
+         CMFormatDescriptionGetMediaSubType(vFormat.formatDescription) == 875704422 { // meant for full range 420f
+        do {
+          try captureDevice.lockForConfiguration()
+          captureDevice.activeFormat = vFormat as AVCaptureDevice.Format
+          captureDevice.activeVideoMinFrameDuration = CMTimeMake(value: 1, timescale: Int32(desiredFrameRate))
+          captureDevice.activeVideoMaxFrameDuration = CMTimeMake(value: 1, timescale: Int32(desiredFrameRate))
+          captureDevice.unlockForConfiguration()
+          break
+        } catch {
+          continue
+        }
+      }
+    }
+    print("Camera format:", captureDevice.activeFormat)
+
+    captureSession.commitConfiguration()
+    return true
+  }
+
+  public func start() {
+    if !captureSession.isRunning {
+      captureSession.startRunning()
+    }
+  }
+
+  public func stop() {
+    if captureSession.isRunning {
+      captureSession.stopRunning()
+    }
+  }
 }
 
-
 extension VideoCapture: AVCaptureVideoDataOutputSampleBufferDelegate {
-    
-    // Because lowering the capture device's FPS looks ugly in the preview,
-    // we capture at full speed but only call the delegate at its desired
-    // frame rate. If frameInterval is 1, we run at the full frame rate.
-    public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
-        seenFrames += 1
-        if seenFrames >= frameInterval {
-            // print("Delegate do capture")
-            seenFrames = 0
-            delegate?.videoCapture(capture: self, didCaptureVideoFrame: sampleBuffer)
-        }
-    }
+  public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+    let timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer)
+    let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer)
+    delegate?.videoCapture(self, didCaptureVideoFrame: imageBuffer, timestamp: timestamp)
+  }
 
+  public func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
+    //print("dropped frame")
+  }
 }
