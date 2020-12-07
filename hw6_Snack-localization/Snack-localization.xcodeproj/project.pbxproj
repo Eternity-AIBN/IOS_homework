@@ -54,7 +54,6 @@
 		835CDF4F25749B9100922536 = {
 			isa = PBXGroup;
 			children = (
-				83A1C878257B608A00046100 /* SNACKMDOEL.swift */,
 				835CDF5A25749B9100922536 /* Snack-localization */,
 				835CDF5925749B9100922536 /* Products */,
 			);
@@ -71,6 +70,7 @@
 		835CDF5A25749B9100922536 /* Snack-localization */ = {
 			isa = PBXGroup;
 			children = (
+				83A1C878257B608A00046100 /* SNACKMDOEL.swift */,
 				835CDF5B25749B9100922536 /* AppDelegate.swift */,
 				835CDF5D25749B9100922536 /* SceneDelegate.swift */,
 				835CDF5F25749B9100922536 /* ViewController.swift */,
