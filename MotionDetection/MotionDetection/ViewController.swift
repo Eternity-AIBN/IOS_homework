@@ -74,8 +74,10 @@ class ViewController: UIViewController {
                 if self.bufferIndex == 0 {
                     self.isDataAvailable = true
                 }
-                print("1112333")
                 self.predict()
+                DispatchQueue.main.async {
+                    
+                }
             }
         )
     }
@@ -87,6 +89,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        //enableMotionUpdates()
     }
     
     let model: GestureClassifier = {
@@ -114,8 +117,7 @@ class ViewController: UIViewController {
             
             DispatchQueue.main.async {
                 self.Result.text = self.classifierOutput.activity
-                self.Confidence.text = String(format: "%.1f%%",
-                                              self.classifierOutput.activityProbability[self.classifierOutput.activity]! * 100)
+                self.Confidence.text = String(format: "%.1f%%",self.classifierOutput.activityProbability[self.classifierOutput.activity]! * 100)
             }
             
         }
