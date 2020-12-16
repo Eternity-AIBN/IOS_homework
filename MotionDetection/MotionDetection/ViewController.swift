@@ -20,12 +20,17 @@ class ViewController: UIViewController {
     static let windowOffset = 5
     static let numberOfWindows = windowSize / windowOffset
     static let bufferSize = windowSize + windowOffset * (numberOfWindows - 1)
+    static let sampleSizeAsBytes = ViewController.numberOfFeatures * MemoryLayout<Double>.stride
+    static let windowOffsetAsBytes = ViewController.windowOffset * sampleSizeAsBytes
+    static let windowSizeAsBytes = ViewController.windowSize * sampleSizeAsBytes
     
     let modelInput: MLMultiArray! = makeMLMultiArray(numberOfSamples: windowSize)
     let dataBuffer: MLMultiArray! = makeMLMultiArray(numberOfSamples: bufferSize)
     
     var bufferIndex = 0
     var isDataAvailable = false
+    
+    var classifierOutput: GestureClassifierOutput!
     
     static private func makeMLMultiArray(numberOfSamples: Int) -> MLMultiArray? {
         try? MLMultiArray(
@@ -69,6 +74,7 @@ class ViewController: UIViewController {
                 if self.bufferIndex == 0 {
                     self.isDataAvailable = true
                 }
+                print("1112333")
                 self.predict()
             }
         )
@@ -92,7 +98,27 @@ class ViewController: UIViewController {
     }()
     
     func predict(){
-        
+        if isDataAvailable && bufferIndex % ViewController.windowOffset == 0 && bufferIndex + ViewController.windowOffset <= ViewController.windowSize {
+            let window = bufferIndex / ViewController.windowOffset
+            memcpy(modelInput.dataPointer, dataBuffer.dataPointer.advanced(by: window * ViewController.windowOffsetAsBytes), ViewController.windowSizeAsBytes)
+            
+            var classifierInput: GestureClassifierInput? = nil
+            if classifierOutput == nil{   //The first layer
+                classifierInput = GestureClassifierInput(features: modelInput)
+            }
+            else{
+                classifierInput = GestureClassifierInput(features: modelInput, hiddenIn: classifierOutput.hiddenOut, cellIn: classifierOutput.cellOut)
+            }
+            
+            classifierOutput = try? model.prediction(input: classifierInput!)
+            
+            DispatchQueue.main.async {
+                self.Result.text = self.classifierOutput.activity
+                self.Confidence.text = String(format: "%.1f%%",
+                                              self.classifierOutput.activityProbability[self.classifierOutput.activity]! * 100)
+            }
+            
+        }
     }
     
 
