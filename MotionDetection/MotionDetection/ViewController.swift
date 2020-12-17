@@ -76,7 +76,7 @@ class ViewController: UIViewController {
                 }
                 self.predict()
                 DispatchQueue.main.async {
-                    
+                    self.run()
                 }
             }
         )
@@ -89,7 +89,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        //enableMotionUpdates()
+        enableMotionUpdates()
     }
     
     let model: GestureClassifier = {
@@ -123,6 +123,73 @@ class ViewController: UIViewController {
         }
     }
     
+    //MARK: run
+    var playing = false
+    var curScore = 0
+    var frameCount = 0
+    var timer = 3
+    var timeoutFlag = false
+    var answer = ""
+    
+    @IBAction func startButton(_ sender: UIButton) {
+        //enableMotionUpdates()
+        if !playing{
+            playing = !playing
+            frameCount = 0
+            curScore = 0
+            score.text = "0"
+            sender.setTitle("Type to end", for: .normal)
+            randomMotion()
+        }
+        else{
+            playing = !playing
+            sender.setTitle("Type to start", for: .normal)
+            motionLabel.text = "Try to ..."
+        }
+    }
+    @IBOutlet weak var motionLabel: UILabel!
+    @IBOutlet weak var score: UILabel!
+    
+    let motions = ["chop_it", "shake_it", "drive_it"]
+    
+    func randomMotion(){
+        let index = Int.random(in: 0..<motions.count)
+        answer = motions[index]
+        motionLabel.text = "Try to " + answer
+        timer = 3
+        timeoutFlag = false
+    }
+    
+    func run(){
+        guard playing else {
+            return
+        }
+        
+        frameCount = (frameCount+1) % Int(ViewController.samplesPerSecond)
+        if !timeoutFlag, classifierOutput.activity == answer{  //Do the right motion in time
+            frameCount = 0
+            timeoutFlag = false
+            curScore += 1
+            score.text = String(curScore)
+            randomMotion()
+        }
+        else if frameCount == 0{
+            if !timeoutFlag{
+                if timer == 0{  //Timeout and don't do the right motion
+                    timeoutFlag = true
+                    curScore -= 1
+                    score.text = String(curScore)
+                }
+                else{  //Don't do the right motion but still have time left
+                    timer -= 1
+                }
+            }
+            else{  //Timeout, generate a new motion
+                randomMotion()
+            }
+        }
+        
+    }
 
 }
 
