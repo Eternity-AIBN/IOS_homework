@@ -19,6 +19,7 @@
 		4C82E2531F0C9D0300C76453 /* ActorListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C82E2521F0C9D0300C76453 /* ActorListTableViewController.swift */; };
 		4C9B08951F0C8D22009C7DCD /* MovieListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9B08941F0C8D22009C7DCD /* MovieListTableViewController.swift */; };
 		4C9B08C61F0C980D009C7DCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9B08C51F0C980D009C7DCD /* LaunchScreen.storyboard */; };
+		834A6366258C503B00D85EF9 /* SentimentClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 834A6365258C503B00D85EF9 /* SentimentClassifier.mlmodel */; };
 		835B87DA2215FAAE005AE9FA /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835B87D92215FAAE005AE9FA /* Util.swift */; };
 		83A2B3D521F859B100F1086A /* LanguageListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A2B3D421F859B100F1086A /* LanguageListTableViewController.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,7 @@
 		4C82E2521F0C9D0300C76453 /* ActorListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActorListTableViewController.swift; sourceTree = "<group>"; };
 		4C9B08941F0C8D22009C7DCD /* MovieListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListTableViewController.swift; sourceTree = "<group>"; };
 		4C9B08C51F0C980D009C7DCD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		834A6365258C503B00D85EF9 /* SentimentClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SentimentClassifier.mlmodel; sourceTree = "<group>"; };
 		835B87D92215FAAE005AE9FA /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		83A2B3D421F859B100F1086A /* LanguageListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -72,6 +74,7 @@
 		0A5EA8421F07E6D6006E6651 /* SMDB */ = {
 			isa = PBXGroup;
 			children = (
+				834A6365258C503B00D85EF9 /* SentimentClassifier.mlmodel */,
 				0A5EA8431F07E6D6006E6651 /* AppDelegate.swift */,
 				0A5EA8591F07F1B8006E6651 /* ReviewsTableViewController.swift */,
 				0A5EA85D1F083434006E6651 /* ReviewTableViewCell.swift */,
@@ -172,6 +175,7 @@
 				0A5EA8441F07E6D6006E6651 /* AppDelegate.swift in Sources */,
 				0A5EA85A1F07F1B8006E6651 /* ReviewsTableViewController.swift in Sources */,
 				835B87DA2215FAAE005AE9FA /* Util.swift in Sources */,
+				834A6366258C503B00D85EF9 /* SentimentClassifier.mlmodel in Sources */,
 				83A2B3D521F859B100F1086A /* LanguageListTableViewController.swift in Sources */,
 				0A5BEDC61F0AECB600AB37C5 /* NLPHelper.swift in Sources */,
 			);
@@ -241,7 +245,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -294,7 +298,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";

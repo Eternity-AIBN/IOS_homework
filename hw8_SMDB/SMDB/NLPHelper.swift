@@ -34,30 +34,72 @@ import NaturalLanguage
 
 func getLanguage(text: String) -> NLLanguage? {
   //To be replaced
-  return nil
+  return NLLanguageRecognizer.dominantLanguage(for: text)
 }
 
 func getPeopleNames(text: String, block: (String) -> Void) {
   //To be replaced
+    let tagger = NLTagger(tagSchemes: [.nameType])
+    tagger.string = text
+    
+    let options:NLTagger.Options = [
+        .omitWhitespace, .omitPunctuation, .omitOther, .joinNames]
+    
+    tagger.enumerateTags(in: text.startIndex..<text.endIndex, unit: .word, scheme: .nameType, options: options) { tag, tokenRange in
+        if tag == .personalName{
+            block(String(text[tokenRange]))
+        }
+        return true
+    }
 }
 
 func getSearchTerms(text: String, language: String? = nil, block: (String) -> Void) {
   // To be replaced
+    let tagger = NLTagger(tagSchemes: [.lemma])
+    tagger.string = text
+    if let language = language{
+        tagger.setLanguage(NLLanguage(rawValue: language), range: text.startIndex..<text.endIndex)
+    }
+    let options: NLTagger.Options = [
+    .omitWhitespace, .omitPunctuation, .omitOther, .joinNames]
+    tagger.enumerateTags(
+        in: text.startIndex..<text.endIndex, unit: .word,
+        scheme: .lemma, options: options) { tag, tokenRange in
+        let token = String(text[tokenRange]).lowercased()
+        if let tag = tag {
+            let lemma = tag.rawValue.lowercased()
+            block(lemma)
+            if lemma != token {
+                block(token)
+            }
+        }else{
+            block(token)
+        }
+        return true
+    }
 }
 
 func analyzeSentiment(text:String) -> Double? {
   // To be replaced
-  return nil
+    let tagger = NLTagger(tagSchemes: [.sentimentScore])
+    tagger.string = text
+    let (tag, _) = tagger.tag(at: text.startIndex,
+    unit: .paragraph,
+    scheme: .sentimentScore)
+    guard let sentiment = tag,
+    let score = Double(sentiment.rawValue)
+    else { return nil }
+    return score
 }
 
 func getSentimentClassifier() -> NLModel? {
   // To be replaced
-  return nil
+    return try! NLModel(mlModel: SentimentClassifier(configuration:.init()).model)
 }
 
 func predictSentiment(text: String, sentimentClassifier: NLModel) -> String? {
   // To be replaced
-  return nil
+  return sentimentClassifier.predictedLabel(for: text)
 }
 
 // ------------------------------------------------------------------
