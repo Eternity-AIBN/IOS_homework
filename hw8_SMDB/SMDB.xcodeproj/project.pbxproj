@@ -21,6 +21,10 @@
 		4C9B08C61F0C980D009C7DCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C9B08C51F0C980D009C7DCD /* LaunchScreen.storyboard */; };
 		834A6366258C503B00D85EF9 /* SentimentClassifier.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 834A6365258C503B00D85EF9 /* SentimentClassifier.mlmodel */; };
 		835B87DA2215FAAE005AE9FA /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = 835B87D92215FAAE005AE9FA /* Util.swift */; };
+		8390AF60258C5ABF00FBF4B2 /* Es2EnCharDecoder16Bit.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8390AF5C258C5ABE00FBF4B2 /* Es2EnCharDecoder16Bit.mlmodel */; };
+		8390AF61258C5ABF00FBF4B2 /* esCharToInt.json in Resources */ = {isa = PBXBuildFile; fileRef = 8390AF5D258C5ABE00FBF4B2 /* esCharToInt.json */; };
+		8390AF62258C5ABF00FBF4B2 /* Es2EnCharEncoder16Bit.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 8390AF5E258C5ABF00FBF4B2 /* Es2EnCharEncoder16Bit.mlmodel */; };
+		8390AF63258C5ABF00FBF4B2 /* intToEnChar.json in Resources */ = {isa = PBXBuildFile; fileRef = 8390AF5F258C5ABF00FBF4B2 /* intToEnChar.json */; };
 		83A2B3D521F859B100F1086A /* LanguageListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83A2B3D421F859B100F1086A /* LanguageListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +45,10 @@
 		4C9B08C51F0C980D009C7DCD /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		834A6365258C503B00D85EF9 /* SentimentClassifier.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = SentimentClassifier.mlmodel; sourceTree = "<group>"; };
 		835B87D92215FAAE005AE9FA /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
+		8390AF5C258C5ABE00FBF4B2 /* Es2EnCharDecoder16Bit.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Es2EnCharDecoder16Bit.mlmodel; sourceTree = "<group>"; };
+		8390AF5D258C5ABE00FBF4B2 /* esCharToInt.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = esCharToInt.json; sourceTree = "<group>"; };
+		8390AF5E258C5ABF00FBF4B2 /* Es2EnCharEncoder16Bit.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Es2EnCharEncoder16Bit.mlmodel; sourceTree = "<group>"; };
+		8390AF5F258C5ABF00FBF4B2 /* intToEnChar.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = intToEnChar.json; sourceTree = "<group>"; };
 		83A2B3D421F859B100F1086A /* LanguageListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +83,10 @@
 			isa = PBXGroup;
 			children = (
 				834A6365258C503B00D85EF9 /* SentimentClassifier.mlmodel */,
+				8390AF5C258C5ABE00FBF4B2 /* Es2EnCharDecoder16Bit.mlmodel */,
+				8390AF5E258C5ABF00FBF4B2 /* Es2EnCharEncoder16Bit.mlmodel */,
+				8390AF5D258C5ABE00FBF4B2 /* esCharToInt.json */,
+				8390AF5F258C5ABF00FBF4B2 /* intToEnChar.json */,
 				0A5EA8431F07E6D6006E6651 /* AppDelegate.swift */,
 				0A5EA8591F07F1B8006E6651 /* ReviewsTableViewController.swift */,
 				0A5EA85D1F083434006E6651 /* ReviewTableViewCell.swift */,
@@ -154,8 +166,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A5EA8561F07EE54006E6651 /* reviews.json in Resources */,
+				8390AF63258C5ABF00FBF4B2 /* intToEnChar.json in Resources */,
 				4C9B08C61F0C980D009C7DCD /* LaunchScreen.storyboard in Resources */,
 				0A5EA84B1F07E6D6006E6651 /* Assets.xcassets in Resources */,
+				8390AF61258C5ABF00FBF4B2 /* esCharToInt.json in Resources */,
 				0A5EA8491F07E6D6006E6651 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -167,6 +181,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8390AF62258C5ABF00FBF4B2 /* Es2EnCharEncoder16Bit.mlmodel in Sources */,
+				8390AF60258C5ABF00FBF4B2 /* Es2EnCharDecoder16Bit.mlmodel in Sources */,
 				4C9B08951F0C8D22009C7DCD /* MovieListTableViewController.swift in Sources */,
 				0A5BEDCB1F0B27B900AB37C5 /* Review.swift in Sources */,
 				4C82E2531F0C9D0300C76453 /* ActorListTableViewController.swift in Sources */,
