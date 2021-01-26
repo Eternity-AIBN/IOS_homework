@@ -7,6 +7,12 @@
 
 import UIKit
 import os.log
+import CoreML
+
+let labels = ["apple", "banana", "cake", "candy", "carrot", "cookie",
+              "doughnut", "grape", "hot dog", "ice cream", "juice",
+              "muffin", "orange", "pineapple", "popcorn", "pretzel",
+              "salad", "strawberry", "waffle", "watermelon"]
 
 class ReminderViewController: UIViewController, UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
     
@@ -15,16 +21,29 @@ class ReminderViewController: UIViewController, UITextFieldDelegate,UIImagePicke
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var resultLabel: UILabel!
     
     /*
      This value is either passed by `ReminderTableViewController` in `prepare(for:sender:)`
      or constructed as part of adding a new reminder.
      */
     var thing: Reminder?
+    var model: Snacks?
+    static let maxInflightBuffers = 3
+    var resizedPixelBuffers: [CVPixelBuffer?] = []
+    let ciContext = CIContext()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        model = Snacks()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        resultLabel.text = ""
+        
+        setUpCoreImage()
         
         // Handle the text field's user input through delegate callbacks.
         nameTestField.delegate = self
@@ -39,6 +58,23 @@ class ReminderViewController: UIViewController, UITextFieldDelegate,UIImagePicke
         
         //Enable the Save button only if the text field has a valid reminder name
         updateSaveButtonState()
+    }
+    
+    func setUpCoreImage() {
+      // Since we might be running several requests in parallel, we also need
+      // to do the resizing in different pixel buffers or we might overwrite a
+      // pixel buffer that's already in use.
+      for _ in 0..<ReminderViewController.maxInflightBuffers {
+        var resizedPixelBuffer: CVPixelBuffer?
+        let status = CVPixelBufferCreate(nil, SNACKMODEL.inputWidth, SNACKMODEL.inputHeight,
+                                         kCVPixelFormatType_32BGRA, nil,
+                                         &resizedPixelBuffer)
+
+        if status != kCVReturnSuccess {
+          print("Error: could not create resized pixel buffer", status)
+        }
+        resizedPixelBuffers.append(resizedPixelBuffer)
+      }
     }
 
     //MARK: UITestFileDelegate
@@ -70,11 +106,55 @@ class ReminderViewController: UIViewController, UITextFieldDelegate,UIImagePicke
             fatalError("Expected a dictionary containing an image, but was provided the following: \(info)")
         }
         
+        resultLabel.text = "Analyzing Image..."
+        
         // Set photoImageView to display the selected image.
         photoImageView.image = selectedImage
         
         // Dismiss the picker.
         dismiss(animated: true, completion: nil)
+        
+        let yolo = SNACKMODEL()
+        let pixelBuffer = selectedImage.pixelBuffer(width: SNACKMODEL.inputWidth, height: SNACKMODEL.inputHeight)
+        
+        if let resizedPixelBuffer = resizedPixelBuffers[0] {
+            let ciImage = CIImage(cvPixelBuffer: pixelBuffer!)
+            let sx = CGFloat(SNACKMODEL.inputWidth) / CGFloat(CVPixelBufferGetWidth(pixelBuffer!))
+            let sy = CGFloat(SNACKMODEL.inputHeight) / CGFloat(CVPixelBufferGetHeight(pixelBuffer!))
+            let scaleTransform = CGAffineTransform(scaleX: sx, y: sy)
+            let scaledImage = ciImage.transformed(by: scaleTransform)
+            ciContext.render(scaledImage, to: resizedPixelBuffer)
+
+            // Give the resized input to our model.
+            let boundingBoxes = yolo.predict(image: resizedPixelBuffer)
+            resultLabel.text = "I think it's a \(labels[boundingBoxes!.classIndex])"
+        }
+        /*UIGraphicsBeginImageContextWithOptions(CGSize(width: ReminderViewController.inputWidth, height: ReminderViewController.inputHeight), true, 2.0)
+        selectedImage.draw(in: CGRect(x: 0, y: 0, width: ReminderViewController.inputWidth, height: ReminderViewController.inputHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        let attrs = [kCVPixelBufferCGImageCompatibilityKey: kCFBooleanTrue, kCVPixelBufferCGBitmapContextCompatibilityKey: kCFBooleanTrue] as CFDictionary
+        var pixelBuffer : CVPixelBuffer?
+        let status = CVPixelBufferCreate(kCFAllocatorDefault, Int(newImage.size.width), Int(newImage.size.height), kCVPixelFormatType_32ARGB, attrs, &pixelBuffer)
+        guard (status == kCVReturnSuccess) else {
+            return
+        }
+        
+        guard let prediction = try? model?.prediction(image: pixelBuffer!) else{
+            return
+        }
+        
+        var index = -1
+        var prob = -1.0
+        for i in 0..<20{
+            print(i, labels[i], prediction.output1[i].doubleValue)
+            if (i != 3) && (prediction.output1[i].doubleValue > prob) {
+                prob = prediction.output1[i].doubleValue
+                index = i
+            }
+        }*/
+        
     }
 
     //MARK: Navigation

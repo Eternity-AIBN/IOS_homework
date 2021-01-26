@@ -19,6 +19,9 @@
 		8360821B25BEB06700526A28 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8360821A25BEB06700526A28 /* RatingControl.swift */; };
 		8376188B25BFF5950032C1B9 /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376188A25BFF5950032C1B9 /* ReminderTableViewCell.swift */; };
 		8376189025BFFA780032C1B9 /* ReminderTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376188F25BFFA780032C1B9 /* ReminderTableViewController.swift */; };
+		83CF805C25C01B00005EE953 /* Snacks.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 83CF805B25C01B00005EE953 /* Snacks.mlmodel */; };
+		83CF806225C05C9D005EE953 /* SNACKMODEL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF806125C05C9D005EE953 /* SNACKMODEL.swift */; };
+		83CF806725C0602F005EE953 /* UIImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CF806625C0602F005EE953 /* UIImage+CVPixelBuffer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +60,9 @@
 		8360821A25BEB06700526A28 /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		8376188A25BFF5950032C1B9 /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
 		8376188F25BFFA780032C1B9 /* ReminderTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTableViewController.swift; sourceTree = "<group>"; };
+		83CF805B25C01B00005EE953 /* Snacks.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Snacks.mlmodel; sourceTree = "<group>"; };
+		83CF806125C05C9D005EE953 /* SNACKMODEL.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SNACKMODEL.swift; sourceTree = "<group>"; };
+		83CF806625C0602F005EE953 /* UIImage+CVPixelBuffer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+CVPixelBuffer.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,10 +116,13 @@
 				836081E725BE65E600526A28 /* AppDelegate.swift */,
 				836081E925BE65E600526A28 /* SceneDelegate.swift */,
 				836081EB25BE65E600526A28 /* ReminderViewController.swift */,
+				83CF806625C0602F005EE953 /* UIImage+CVPixelBuffer.swift */,
+				83CF806125C05C9D005EE953 /* SNACKMODEL.swift */,
 				8359C02125BFC4C200C8DE66 /* Reminder.swift */,
 				836081ED25BE65E600526A28 /* Main.storyboard */,
 				8376188A25BFF5950032C1B9 /* ReminderTableViewCell.swift */,
 				8376188F25BFFA780032C1B9 /* ReminderTableViewController.swift */,
+				83CF805B25C01B00005EE953 /* Snacks.mlmodel */,
 				836081F025BE65E900526A28 /* Assets.xcassets */,
 				836081F225BE65E900526A28 /* LaunchScreen.storyboard */,
 				836081F525BE65E900526A28 /* Info.plist */,
@@ -271,10 +280,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8360821B25BEB06700526A28 /* RatingControl.swift in Sources */,
+				83CF806225C05C9D005EE953 /* SNACKMODEL.swift in Sources */,
+				83CF805C25C01B00005EE953 /* Snacks.mlmodel in Sources */,
 				8376188B25BFF5950032C1B9 /* ReminderTableViewCell.swift in Sources */,
 				8376189025BFFA780032C1B9 /* ReminderTableViewController.swift in Sources */,
 				836081EC25BE65E600526A28 /* ReminderViewController.swift in Sources */,
 				836081E825BE65E600526A28 /* AppDelegate.swift in Sources */,
+				83CF806725C0602F005EE953 /* UIImage+CVPixelBuffer.swift in Sources */,
 				836081EA25BE65E600526A28 /* SceneDelegate.swift in Sources */,
 				8359C02225BFC4C200C8DE66 /* Reminder.swift in Sources */,
 			);

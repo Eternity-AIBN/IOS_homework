@@ -74,8 +74,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="umK-hj-fOA">
-                                <rect key="frame" x="20" y="108" width="374" height="414"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="umK-hj-fOA">
+                                <rect key="frame" x="20" y="108" width="374" height="448.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter reminders" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zff-hc-M0L">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
@@ -92,8 +92,14 @@
                                             <outletCollection property="gestureRecognizers" destination="dbb-lz-lDv" appends="YES" id="O8E-zU-5bh"/>
                                         </connections>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8SC-ih-EoD" customClass="RatingControl" customModule="FinalProj" customModuleProvider="target">
-                                        <rect key="frame" x="61" y="370" width="252" height="44"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ResultLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0D-Ou-evm">
+                                        <rect key="frame" x="142.5" y="370" width="89" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8SC-ih-EoD" customClass="RatingControl" customModule="FinalProj" customModuleProvider="target">
+                                        <rect key="frame" x="61" y="398.5" width="252" height="50"/>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -125,6 +131,7 @@
                         <outlet property="nameTestField" destination="Zff-hc-M0L" id="77P-XC-To7"/>
                         <outlet property="photoImageView" destination="8fj-3E-7es" id="RNc-uL-bmp"/>
                         <outlet property="ratingControl" destination="8SC-ih-EoD" id="aCC-tS-Lac"/>
+                        <outlet property="resultLabel" destination="i0D-Ou-evm" id="KiI-Yy-jAe"/>
                         <outlet property="saveButton" destination="ACq-pj-L7u" id="2Ec-e8-SOx"/>
                     </connections>
                 </viewController>
