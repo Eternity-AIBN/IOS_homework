@@ -9,25 +9,34 @@ import XCTest
 @testable import FinalProj
 
 class FinalProjTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    //MAKR: Reminder Class Tests
+    
+    // Confirm that the Reminder initializer returns a Reminder object when passed valid parameters.
+    func testReminderInitializationSucceeds() {
+        
+        //Zero rating
+        let zeroRating = Reminder.init(thing: "Buy apple", photo: nil, rating: 0)
+        XCTAssertNotNil(zeroRating)
+        
+        //Positive rating
+        let positiveRating = Reminder.init(thing: "But banana", photo: nil, rating: 4)
+        XCTAssertNotNil(positiveRating)
+        
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    // Confirm that the Reminder initialier returns nil when passed a negative rating or an empty thing.
+    func testReminderInitializationFails() {
+        // Negative rating
+        let negativeRatingMeal = Reminder.init(thing: "Buy apple", photo: nil, rating: -1)
+        XCTAssertNil(negativeRatingMeal)
+         
+        // Empty String
+        let emptyStringMeal = Reminder.init(thing: "Buy apple", photo: nil, rating: 6)
+        XCTAssertNil(emptyStringMeal)
+        
+        // Rating exceeds maximum
+        let largeRatingMeal = Reminder.init(thing: "", photo: nil, rating: 0)
+        XCTAssertNil(largeRatingMeal)
     }
 
 }

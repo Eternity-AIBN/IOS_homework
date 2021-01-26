@@ -13,6 +13,7 @@ class ViewController: UIViewController, UITextFieldDelegate,UIImagePickerControl
     @IBOutlet weak var nameTestField: UITextField!
     @IBOutlet weak var reminderLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var ratingControl: RatingControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,10 +69,6 @@ class ViewController: UIViewController, UITextFieldDelegate,UIImagePickerControl
         imagePickerController.delegate = self
         present(imagePickerController, animated: true, completion: nil)
         
-    }
-    
-    @IBAction func setDefaultLabelText(_ sender: UIButton) {
-        reminderLabel.text = "Dafault Text"
     }
     
     

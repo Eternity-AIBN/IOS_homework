@@ -16,30 +16,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="umK-hj-fOA">
-                                <rect key="frame" x="20" y="64" width="374" height="565.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="umK-hj-fOA">
+                                <rect key="frame" x="20" y="64" width="374" height="451"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Reminder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IaX-8k-O0Y">
-                                        <rect key="frame" x="0.0" y="0.0" width="99.5" height="29"/>
+                                        <rect key="frame" x="137.5" y="0.0" width="99.5" height="29"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter reminders" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zff-hc-M0L">
-                                        <rect key="frame" x="0.0" y="37" width="374" height="38.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <rect key="frame" x="0.0" y="37" width="374" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSy-g0-Ce8">
-                                        <rect key="frame" x="0.0" y="83.5" width="191" height="36"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Set Default Label Text"/>
-                                        <connections>
-                                            <action selector="setDefaultLabelText:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rU5-zy-nD7"/>
-                                        </connections>
-                                    </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" translatesAutoresizingMaskIntoConstraints="NO" id="8fj-3E-7es">
-                                        <rect key="frame" x="0.0" y="127.5" width="320" height="320"/>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="8fj-3E-7es">
+                                        <rect key="frame" x="27" y="79" width="320" height="320"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="8fj-3E-7es" secondAttribute="height" multiplier="1:1" id="vHi-Ge-HJk"/>
@@ -48,8 +40,8 @@
                                             <outletCollection property="gestureRecognizers" destination="dbb-lz-lDv" appends="YES" id="O8E-zU-5bh"/>
                                         </connections>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8SC-ih-EoD" customClass="RatingControl" customModule="FinalProj" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="455.5" width="200" height="110"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8SC-ih-EoD" customClass="RatingControl" customModule="FinalProj" customModuleProvider="target">
+                                        <rect key="frame" x="61" y="407" width="252" height="44"/>
                                     </stackView>
                                 </subviews>
                                 <constraints>
@@ -68,6 +60,7 @@
                     <connections>
                         <outlet property="nameTestField" destination="Zff-hc-M0L" id="77P-XC-To7"/>
                         <outlet property="photoImageView" destination="8fj-3E-7es" id="RNc-uL-bmp"/>
+                        <outlet property="ratingControl" destination="8SC-ih-EoD" id="aCC-tS-Lac"/>
                         <outlet property="reminderLabel" destination="IaX-8k-O0Y" id="hT4-z7-iNF"/>
                     </connections>
                 </viewController>
@@ -82,6 +75,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="defaultPhoto" width="540" height="540"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

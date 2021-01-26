@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8359C02225BFC4C200C8DE66 /* Reminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8359C02125BFC4C200C8DE66 /* Reminder.swift */; };
 		836081E825BE65E600526A28 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836081E725BE65E600526A28 /* AppDelegate.swift */; };
 		836081EA25BE65E600526A28 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836081E925BE65E600526A28 /* SceneDelegate.swift */; };
 		836081EC25BE65E600526A28 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 836081EB25BE65E600526A28 /* ViewController.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8359C02125BFC4C200C8DE66 /* Reminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reminder.swift; sourceTree = "<group>"; };
 		836081E425BE65E600526A28 /* FinalProj.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalProj.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		836081E725BE65E600526A28 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		836081E925BE65E600526A28 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				836081E725BE65E600526A28 /* AppDelegate.swift */,
 				836081E925BE65E600526A28 /* SceneDelegate.swift */,
 				836081EB25BE65E600526A28 /* ViewController.swift */,
+				8359C02125BFC4C200C8DE66 /* Reminder.swift */,
 				836081ED25BE65E600526A28 /* Main.storyboard */,
 				836081F025BE65E900526A28 /* Assets.xcassets */,
 				836081F225BE65E900526A28 /* LaunchScreen.storyboard */,
@@ -265,6 +268,7 @@
 				836081EC25BE65E600526A28 /* ViewController.swift in Sources */,
 				836081E825BE65E600526A28 /* AppDelegate.swift in Sources */,
 				836081EA25BE65E600526A28 /* SceneDelegate.swift in Sources */,
+				8359C02225BFC4C200C8DE66 /* Reminder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
