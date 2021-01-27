@@ -29,19 +29,27 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VWb-D6-I0o">
-                                            <rect key="frame" x="98" y="11" width="296" height="21"/>
+                                            <rect key="frame" x="98" y="0.0" width="296" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Vvl-Gc-1kw" customClass="RatingControl" customModule="FinalProj" customModuleProvider="target">
-                                            <rect key="frame" x="98" y="35" width="252" height="44"/>
+                                            <rect key="frame" x="98" y="40" width="252" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gwY-dO-V9h" userLabel="Date Label">
+                                            <rect key="frame" x="98" y="19" width="296" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="dateLabel" destination="gwY-dO-V9h" id="hVm-al-WN5"/>
                                     <outlet property="photoImageView" destination="2Ul-6h-jA3" id="bZD-s7-udV"/>
                                     <outlet property="ratingControl" destination="Vvl-Gc-1kw" id="dg1-mW-Jtw"/>
                                     <outlet property="thingLabel" destination="VWb-D6-I0o" id="EIS-wt-KQx"/>
@@ -74,16 +82,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="umK-hj-fOA">
-                                <rect key="frame" x="20" y="108" width="374" height="448.5"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="umK-hj-fOA">
+                                <rect key="frame" x="20" y="108" width="374" height="666.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter reminders" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zff-hc-M0L">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
+                                    <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Kgz-1C-yLS">
+                                        <rect key="frame" x="27" y="42" width="320" height="216"/>
+                                    </datePicker>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8SC-ih-EoD" customClass="RatingControl" customModule="FinalProj" customModuleProvider="target">
+                                        <rect key="frame" x="61" y="266" width="252" height="44"/>
+                                    </stackView>
                                     <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" placeholderIntrinsicWidth="320" placeholderIntrinsicHeight="320" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="8fj-3E-7es">
-                                        <rect key="frame" x="27" y="42" width="320" height="320"/>
+                                        <rect key="frame" x="27" y="318" width="320" height="320"/>
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="8fj-3E-7es" secondAttribute="height" multiplier="1:1" id="vHi-Ge-HJk"/>
@@ -93,14 +107,11 @@
                                         </connections>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ResultLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i0D-Ou-evm">
-                                        <rect key="frame" x="142.5" y="370" width="89" height="20.5"/>
+                                        <rect key="frame" x="142.5" y="646" width="89" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8SC-ih-EoD" customClass="RatingControl" customModule="FinalProj" customModuleProvider="target">
-                                        <rect key="frame" x="61" y="398.5" width="252" height="50"/>
-                                    </stackView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Zff-hc-M0L" secondAttribute="trailing" id="z6G-BY-uth"/>
@@ -128,6 +139,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="datePicker" destination="Kgz-1C-yLS" id="u1y-oh-yOK"/>
                         <outlet property="nameTestField" destination="Zff-hc-M0L" id="77P-XC-To7"/>
                         <outlet property="photoImageView" destination="8fj-3E-7es" id="RNc-uL-bmp"/>
                         <outlet property="ratingControl" destination="8SC-ih-EoD" id="aCC-tS-Lac"/>

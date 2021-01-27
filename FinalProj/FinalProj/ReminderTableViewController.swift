@@ -28,6 +28,9 @@ class ReminderTableViewController: UITableViewController {
             // Load the sample data
             loadSampleThings()
         }
+        /*print("current time")
+        print(Date.init())
+        print(dateConvertString(date: Date.init()))*/
     }
 
     // MARK: - Table view data source
@@ -55,6 +58,7 @@ class ReminderTableViewController: UITableViewController {
         cell.thingLabel.text = tmp.thing
         cell.photoImageView.image = tmp.photo
         cell.ratingControl.rating = tmp.rating
+        cell.dateLabel.text = dateConvertString(date: tmp.date)
         
         return cell
     }
@@ -159,15 +163,15 @@ class ReminderTableViewController: UITableViewController {
         let photo2 = UIImage(named: "banana")
         let photo3 = UIImage(named: "phone")
         
-        guard let things1 = Reminder(thing: "Buy apple", photo: photo1, rating: 4) else {
+        guard let things1 = Reminder(thing: "Buy apple", photo: photo1, rating: 4, date: Date.init()) else {
             fatalError("Unable to instantiate things1")
         }
         
-        guard let things2 = Reminder(thing: "Eat banana", photo: photo2, rating: 5) else {
+        guard let things2 = Reminder(thing: "Eat banana", photo: photo2, rating: 3, date: Date.init()) else {
             fatalError("Unable to instantiate things2")
         }
         
-        guard let things3 = Reminder(thing: "Buy phone", photo: photo3, rating: 3) else {
+        guard let things3 = Reminder(thing: "Repair the phone", photo: photo3, rating: 5, date: Date.init()) else {
             fatalError("Unable to instantiate things3")
         }
         
@@ -185,6 +189,23 @@ class ReminderTableViewController: UITableViewController {
     
     private func loadReminders() -> [Reminder]?  {
         return NSKeyedUnarchiver.unarchiveObject(withFile: Reminder.ArchiveURL.path) as? [Reminder]
+    }
+    
+    private func dateConvertString(date:Date) -> String {
+        /*let timeZone = TimeZone.init(identifier: "UTC")
+        let formatter = DateFormatter()
+        formatter.timeZone = timeZone
+        formatter.locale = Locale.init(identifier: "zh_CN")
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        
+        let date = formatter.string(from: date)
+        return date.components(separatedBy: " ").first!*/
+        
+        let formatter = DateFormatter()
+        formatter.locale = Locale.init(identifier: "zh_CN")
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let date = formatter.string(from: date)
+        return date
     }
 
 }

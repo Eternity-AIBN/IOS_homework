@@ -13,8 +13,7 @@ class ReminderTableViewCell: UITableViewCell {
     @IBOutlet weak var thingLabel: UILabel!
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var ratingControl: RatingControl!
-    
-    
+    @IBOutlet weak var dateLabel: UILabel!
     
 
     override func awakeFromNib() {

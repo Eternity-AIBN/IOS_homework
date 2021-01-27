@@ -22,6 +22,7 @@ class ReminderViewController: UIViewController, UITextFieldDelegate,UIImagePicke
     @IBOutlet weak var ratingControl: RatingControl!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     @IBOutlet weak var resultLabel: UILabel!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     /*
      This value is either passed by `ReminderTableViewController` in `prepare(for:sender:)`
@@ -54,6 +55,7 @@ class ReminderViewController: UIViewController, UITextFieldDelegate,UIImagePicke
             nameTestField.text   = reminder.thing
             photoImageView.image = reminder.photo
             ratingControl.rating = reminder.rating
+            datePicker.date = reminder.date
         }
         
         //Enable the Save button only if the text field has a valid reminder name
@@ -187,9 +189,10 @@ class ReminderViewController: UIViewController, UITextFieldDelegate,UIImagePicke
         let name = nameTestField.text ?? ""
         let photo = photoImageView.image
         let rating = ratingControl.rating
+        let date = datePicker.date
         
         // Set the thing to be passed to MealTableViewController after the unwind segue.
-        thing = Reminder(thing: name, photo: photo, rating: rating)
+        thing = Reminder(thing: name, photo: photo, rating: rating, date: date)
     }
     
     //MARK: Actions

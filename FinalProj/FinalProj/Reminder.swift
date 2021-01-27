@@ -13,6 +13,7 @@ class Reminder: NSObject,NSCoding {
     var thing: String
     var photo: UIImage?
     var rating: Int
+    var date: Date
     
     //MARK: Archiving Paths
     static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
@@ -23,10 +24,11 @@ class Reminder: NSObject,NSCoding {
         static let thing = "thing"
         static let photo = "photo"
         static let rating = "rating"
+        static let date = "date"
     }
     
     //MARK: Initialization
-    init?(thing: String, photo: UIImage?, rating: Int){
+    init?(thing: String, photo: UIImage?, rating: Int, date: Date){
         
         //The thing must not be empty
         guard !thing.isEmpty else{
@@ -42,6 +44,7 @@ class Reminder: NSObject,NSCoding {
         self.thing = thing
         self.photo = photo
         self.rating = rating
+        self.date = date
     }
     
     //MARK: NSCoding
@@ -49,6 +52,7 @@ class Reminder: NSObject,NSCoding {
         aCoder.encode(thing, forKey: PropertyKey.thing)
         aCoder.encode(photo, forKey: PropertyKey.photo)
         aCoder.encode(rating, forKey: PropertyKey.rating)
+        aCoder.encode(date, forKey: PropertyKey.date)
     }
     
     required convenience init?(coder decoder: NSCoder) {
@@ -62,9 +66,11 @@ class Reminder: NSObject,NSCoding {
         let photo = decoder.decodeObject(forKey: PropertyKey.photo) as? UIImage
         
         let rating = decoder.decodeInteger(forKey: PropertyKey.rating)
+         
+        let date = decoder.decodeObject(forKey: PropertyKey.date) as! Date
         
         // Must call designated initializer.
-        self.init(thing: thing, photo: photo, rating: rating)
+        self.init(thing: thing, photo: photo, rating: rating, date: date)
         
     }
     
