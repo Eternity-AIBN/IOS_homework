@@ -193,6 +193,10 @@ class ReminderViewController: UIViewController, UITextFieldDelegate,UIImagePicke
         
         // Set the thing to be passed to MealTableViewController after the unwind segue.
         thing = Reminder(thing: name, photo: photo, rating: rating, date: date)
+        
+        let ltime = intervalSinceNow(date)
+        
+        application(application: UIApplication.shared, didFinishLaunchingWithOptions: nil, lTime: ltime)
     }
     
     //MARK: Actions
@@ -220,6 +224,85 @@ class ReminderViewController: UIViewController, UITextFieldDelegate,UIImagePicke
         saveButton.isEnabled = !text.isEmpty
     }
     
+    private func dateConvertString(date:Date) -> String {
+        let formatter = DateFormatter()
+        formatter.locale = Locale.init(identifier: "zh_CN")
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        let date = formatter.string(from: date)
+        return date
+    }
+
+    
+    //获取日期差，yyyy-MM-dd HH:mm:ss格式
+    private func intervalSinceNow(_ fromdate: Date) -> Double{
+        let format = DateFormatter.init()
+
+        format.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
+        let fromZone = TimeZone.current
+
+        let fromInterval = fromZone.secondsFromGMT(for: fromdate)
+
+        let fromDate = fromdate.addingTimeInterval(Double(fromInterval))
+
+        let adate = Date()
+
+        let zone = TimeZone.current
+
+        let interval = zone.secondsFromGMT(for: adate)
+
+        let localeDate = adate.addingTimeInterval(Double(interval))
+
+        let interValTime = fromDate.timeIntervalSinceReferenceDate - localeDate.timeIntervalSinceReferenceDate
+
+        let lTime = fabs(interValTime)
+
+        let iSeconds = Int(lTime.truncatingRemainder(dividingBy: 60))
+
+        let iMinutes = Int((lTime / 60) / 60)
+
+        let iHours = Int(fabs((lTime / 3600).truncatingRemainder(dividingBy: 24)))
+
+        let iDays: Int = Int(lTime / 60 / 60 / 24);
+
+        print(iDays, iHours, iMinutes, iSeconds)
+        print(lTime)
+        
+        return lTime
+
+    }
+    
+    private func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?, lTime: Double) -> Void {
+     
+        let pushtypes : UIUserNotificationType = [UIUserNotificationType.badge,UIUserNotificationType.alert,UIUserNotificationType.sound]
+        let userSetting = UIUserNotificationSettings(types: pushtypes  , categories:nil)
+            
+        application.registerUserNotificationSettings(userSetting)
+        self.sendNotification(lTime: lTime)
+    }
+    
+    //添加本地推送和设置固定时间推送了
+    private func sendNotification(lTime: Double) {
+        //取消所有的本地通知
+        UIApplication.shared.cancelAllLocalNotifications()
+        //数字清零
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
+        let localNotificationAM = UILocalNotification()
+    
+        localNotificationAM.fireDate = getFireDate(lTime: lTime) as Date
+        localNotificationAM.repeatInterval = NSCalendar.Unit.day
+        localNotificationAM.timeZone = NSTimeZone.default
+        localNotificationAM.alertBody = thing?.thing
+        localNotificationAM.applicationIconBadgeNumber = 1
+        localNotificationAM.soundName = UILocalNotificationDefaultSoundName
+        UIApplication.shared.scheduleLocalNotification(localNotificationAM)
+    }
+    
+    private func getFireDate(lTime: Double)->NSDate{
+        let pushTime: Double = lTime
+        return  NSDate(timeIntervalSinceNow: TimeInterval(pushTime))
+    }
     
 }
 
